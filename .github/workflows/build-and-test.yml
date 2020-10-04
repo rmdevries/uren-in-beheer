@@ -10,6 +10,8 @@ jobs:
         with:
           dotnet-version: "3.1"
 
-      # dotnet build
       - name: Build with dotnet
         run: dotnet build src/
+
+      - name: Test Units with dotnet
+        run: dotnet test tests/UiB.Unit.Tests
