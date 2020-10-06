@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\UiB.Domain\UiB.Domain\UiB.Domain.csproj" />
+    <ProjectReference Include="..\..\src\UiB.Domain\UiB.Domain.csproj" />
   </ItemGroup>
 
 </Project>
