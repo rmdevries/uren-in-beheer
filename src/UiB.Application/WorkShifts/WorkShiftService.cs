@@ -1,6 +1,6 @@
-﻿using UiB.Domain.WorkShift;
+﻿using UiB.Domain.WorkShifts;
 
-namespace UiB.Application
+namespace UiB.Application.WorkShifts
 {
     public class WorkShiftService : IWorkShiftService
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using FluentAssertions;
-using UiB.Application;
-using UiB.Domain.WorkShift;
+using UiB.Application.WorkShifts;
+using UiB.Domain.WorkShifts;
 using Xunit;
 
-namespace UiB.Unit.Tests.WorkShift
+namespace UiB.Unit.Tests.WorkShifts
 {
     public class WorkShiftServiceTests
     {
@@ -13,7 +13,7 @@ namespace UiB.Unit.Tests.WorkShift
         {
             DateTime start = DateTime.Now;
             DateTime end = start.AddHours(1);
-            Domain.WorkShift.WorkShift workShift = new Domain.WorkShift.WorkShift(start, end);
+            WorkShift workShift = new WorkShift(start, end);
             IWorkShiftService workShiftService = new WorkShiftService();
 
             var result = workShiftService.Create(workShift);

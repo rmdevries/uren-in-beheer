@@ -1,9 +1,10 @@
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using UiB.Domain.WorkShifts;
 using Xunit;
 
-namespace UiB.Unit.Tests.WorkShift
+namespace UiB.Unit.Tests.WorkShifts
 {
     public class WorkShiftTests
     {
@@ -19,7 +20,7 @@ namespace UiB.Unit.Tests.WorkShift
             var start = DateTime.Now;
             var end = DateTime.Now.AddHours(1);
 
-            var workShift = new Domain.WorkShift.WorkShift(start, end);
+            var workShift = new WorkShift(start, end);
 
             workShift.Start.Should().Be(start);
             workShift.End.Should().Be(end);
@@ -30,7 +31,7 @@ namespace UiB.Unit.Tests.WorkShift
         [MemberData(nameof(InvalidWorkShifts))]
         public void GivenInvalidWorkShift_WhenInitialize_ThenThrowArgumentException(DateTime start, DateTime end)
         {
-            Assert.Throws<ArgumentException>(() => new Domain.WorkShift.WorkShift(start, end));
+            Assert.Throws<ArgumentException>(() => new WorkShift(start, end));
         }
     }
 }
