@@ -15,7 +15,7 @@ namespace UiB.Unit.Tests.WorkShifts
         };
 
         [Fact]
-        public void GivenValidWorkShift_WhenInitialize_ThenReturnWorkShift()
+        public void GivenValidWorkShift_WhenInitialize_ThenInitializeWorkShift()
         {
             var start = DateTime.Now;
             var end = DateTime.Now.AddHours(1);

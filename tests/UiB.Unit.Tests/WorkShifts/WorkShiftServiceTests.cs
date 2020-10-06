@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using UiB.Application.WorkShifts;
 using UiB.Domain.WorkShifts;
@@ -8,6 +9,12 @@ namespace UiB.Unit.Tests.WorkShifts
 {
     public class WorkShiftServiceTests
     {
+        public static IEnumerable<object[]> InvalidWorkShifts => new List<object[]>
+        {
+            new object[] {new DateTime(2020, 01, 01, 01, 01, 01), new DateTime(2020, 01, 01, 01, 01, 01)},
+            new object[] {new DateTime(2020, 02, 02, 02, 02, 02), new DateTime(2020, 01, 01, 01, 01, 01)}
+        };
+
         [Fact]
         public void GivenValidWorkShift_WhenCreate_ThenReturnWorkShift()
         {
@@ -21,6 +28,13 @@ namespace UiB.Unit.Tests.WorkShifts
             result.Start.Should().Be(start);
             result.End.Should().Be(end);
             result.Total.Should().Be(end.Subtract(start));
+        }
+
+        [Theory]
+        [MemberData(nameof(InvalidWorkShifts))]
+        public void GivenInValidWorkShift_WhenCreate_ThenThrowArgumentException(DateTime start, DateTime end)
+        {
+            Assert.Throws<ArgumentException>(() => new WorkShift(start, end));
         }
     }
 }
