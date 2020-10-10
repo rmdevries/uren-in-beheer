@@ -1,4 +1,4 @@
-﻿namespace UiB.Domain.WorkShift
+﻿namespace UiB.Domain.WorkShifts
 {
     public interface IWorkShiftService
     {
