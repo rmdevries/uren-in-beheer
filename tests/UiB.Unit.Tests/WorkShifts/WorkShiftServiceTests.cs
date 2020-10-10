@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using System;
-using UiB.Application.WorkShifts;
+using UiB.Api.WorkShifts;
 using UiB.Domain.WorkShifts;
 using UiB.Tests.Utilities.WorkShifts;
 using Xunit;
