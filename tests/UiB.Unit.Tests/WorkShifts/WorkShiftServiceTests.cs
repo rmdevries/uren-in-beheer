@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
+using System;
 using UiB.Application.WorkShifts;
 using UiB.Domain.WorkShifts;
+using UiB.Tests.Utilities.WorkShifts;
 using Xunit;
 
 namespace UiB.Unit.Tests.WorkShifts
 {
     public class WorkShiftServiceTests
     {
-        public static IEnumerable<object[]> InvalidWorkShifts => new List<object[]>
-        {
-            new object[] {new DateTime(2020, 01, 01, 01, 01, 01), new DateTime(2020, 01, 01, 01, 01, 01)},
-            new object[] {new DateTime(2020, 02, 02, 02, 02, 02), new DateTime(2020, 01, 01, 01, 01, 01)}
-        };
-
         [Fact]
         public void GivenValidWorkShift_WhenCreate_ThenReturnWorkShift()
         {
-            DateTime start = DateTime.Now;
-            DateTime end = start.AddHours(1);
-            WorkShift workShift = new WorkShift(start, end);
+            var start = DateTime.Now;
+            var end = start.AddHours(1);
+            var workShift = new WorkShift(start, end);
             IWorkShiftService workShiftService = new WorkShiftService();
 
             var result = workShiftService.Create(workShift);
@@ -31,7 +25,7 @@ namespace UiB.Unit.Tests.WorkShifts
         }
 
         [Theory]
-        [MemberData(nameof(InvalidWorkShifts))]
+        [ClassData(typeof(InvalidWorkShiftData))]
         public void GivenInValidWorkShift_WhenCreate_ThenThrowArgumentException(DateTime start, DateTime end)
         {
             Assert.Throws<ArgumentException>(() => new WorkShift(start, end));
