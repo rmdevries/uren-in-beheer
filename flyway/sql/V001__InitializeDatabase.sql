@@ -1,0 +1,6 @@
+CREATE TABLE WorkShifts
+(
+    Id    INT      NOT NULL PRIMARY KEY,
+    Start DATETIME NOT NULL,
+    End   DATETIME NOT NULL
+);
