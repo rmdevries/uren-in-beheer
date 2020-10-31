@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UiB.Domain\UiB.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="WorkShifts\" />
+    <ProjectReference Include="..\UiB.MySql\UiB.MySql.csproj" />
   </ItemGroup>
 
   <ItemGroup>

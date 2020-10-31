@@ -7,16 +7,16 @@
 
     public class WorkShiftService : IWorkShiftService
     {
-        private readonly IWorkShiftRepository _repo;
+        private readonly IWorkShiftRepository _repository;
 
-        public WorkShiftService(IWorkShiftRepository repo)
+        public WorkShiftService(IWorkShiftRepository repository)
         {
-            _repo = repo;
+            _repository = repository;
         }
 
         public WorkShift Create(WorkShift workShift)
         {
-            return _repo.Insert(workShift);
+            return _repository.Insert(workShift);
         }
     }
 }

@@ -25,7 +25,6 @@ namespace UiB.Unit.Tests.WorkShifts
 
             result.Start.Should().Be(start);
             result.End.Should().Be(end);
-            result.Total.Should().Be(end.Subtract(start));
         }
 
         [Theory]

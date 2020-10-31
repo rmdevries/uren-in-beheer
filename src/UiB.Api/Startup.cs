@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using UiB.Domain.WorkShifts;
+using UiB.MySql.WorkShifts;
 
 namespace UiB.API
 {
@@ -20,6 +22,9 @@ namespace UiB.API
                 Title = "UiB API",
                 Description = "A small Time Registration System API"
             }));
+
+            services.AddScoped<IWorkShiftRepository, WorkShiftRepository>();
+            services.AddScoped<IWorkShiftService, WorkShiftService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,9 +45,10 @@ namespace UiB.API
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
-                });
+            {
+                endpoints.MapControllers();
+                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+            });
         }
     }
 }

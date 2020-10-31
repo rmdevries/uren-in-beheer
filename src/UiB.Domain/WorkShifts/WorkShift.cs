@@ -4,10 +4,9 @@ namespace UiB.Domain.WorkShifts
 {
     public class WorkShift
     {
+        public int Id { get; }
         public DateTime Start { get; }
         public DateTime End { get; }
-
-        public TimeSpan Total => End.Subtract(Start);
 
         public WorkShift(DateTime start, DateTime end)
         {
