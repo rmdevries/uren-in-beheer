@@ -12,19 +12,19 @@ namespace UiB.Unit.Tests.WorkShifts
         [Fact]
         public void GivenValidWorkShift_WhenCreate_ThenReturnWorkShift()
         {
+            var expectedResult = 1;
             var start = DateTime.Now;
             var end = start.AddHours(1);
             var workShift = new WorkShift(start, end);
 
             var workShiftRepository = new Mock<IWorkShiftRepository>();
-            workShiftRepository.Setup(repo => repo.Insert(workShift)).Returns(workShift);
+            workShiftRepository.Setup(repo => repo.Insert(workShift)).Returns(expectedResult);
 
             var workShiftService = new WorkShiftService(workShiftRepository.Object);
 
             var result = workShiftService.Create(workShift);
 
-            result.Start.Should().Be(start);
-            result.End.Should().Be(end);
+            result.Should().Be(expectedResult);
         }
 
         [Theory]

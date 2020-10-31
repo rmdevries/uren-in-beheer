@@ -2,6 +2,6 @@
 {
     public interface IWorkShiftRepository
     {
-        WorkShift Insert(WorkShift workShift);
+        int Insert(WorkShift workShift);
     }
 }

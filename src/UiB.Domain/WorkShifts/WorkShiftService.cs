@@ -2,7 +2,7 @@
 {
     public interface IWorkShiftService
     {
-        public WorkShift Create(WorkShift workShift);
+        public int Create(WorkShift workShift);
     }
 
     public class WorkShiftService : IWorkShiftService
@@ -14,7 +14,7 @@
             _repository = repository;
         }
 
-        public WorkShift Create(WorkShift workShift)
+        public int Create(WorkShift workShift)
         {
             return _repository.Insert(workShift);
         }

@@ -4,9 +4,9 @@ namespace UiB.MySql.WorkShifts
 {
     public class WorkShiftRepository : IWorkShiftRepository
     {
-        public WorkShift Insert(WorkShift workShift)
+        public int Insert(WorkShift workShift)
         {
-            return workShift;
+            return workShift.Id;
         }
     }
 }
