@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MySql.Data.MySqlClient;
 using SimpleInjector;
 using UiB.Domain.WorkShifts;
 using UiB.MySql.WorkShifts;
@@ -14,11 +15,11 @@ namespace UiB.API
     public class Startup
     {
         private readonly Container _container = new Container();
-        private Settings Settings { get; set; }
+        private Settings _settings { get; set; }
 
         public Startup()
         {
-            Settings = new Settings(new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).Build());
+            _settings = new Settings(new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true).Build());
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -40,9 +41,10 @@ namespace UiB.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSimpleInjector(_container);
-            _container.RegisterInstance(Settings);
+            _container.RegisterInstance(_settings);
 
-            _container.Register<IWorkShiftRepository, WorkShiftRepository>();
+            _container.Register<IWorkShiftRepository>(() =>
+                new WorkShiftRepository(new MySqlConnection(_settings.ConnectionString)));
             _container.Register<IWorkShiftService, WorkShiftService>();
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
