@@ -1,4 +1,6 @@
-﻿namespace UiB.Domain.WorkShifts
+﻿using UiB.Domain.Shared;
+
+namespace UiB.Domain.WorkShifts
 {
     public interface IWorkShiftService
     {
@@ -11,7 +13,7 @@
 
         public WorkShiftService(IWorkShiftRepository repository)
         {
-            _repository = repository;
+            _repository = repository ?? throw new NoDatabaseException();
         }
 
         public int Create(WorkShift workShift)

@@ -10,8 +10,9 @@ namespace UiB.Domain.WorkShifts
 
         public WorkShift(DateTime start, DateTime end)
         {
-            if(end <= start)
-                throw new ArgumentException("Failed to create WorkShift, because start and end can't be the same");
+            if (end <= start)
+                throw new InvalidWorkShiftException("Unable to initialize WorkShift due to invalid time period.", start,
+                    end);
 
             Start = start;
             End = end;

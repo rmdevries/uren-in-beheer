@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\UiB.Api\UiB.Api.csproj" />
     <ProjectReference Include="..\..\src\UiB.Domain\UiB.Domain.csproj" />
-    <ProjectReference Include="..\UiB.Tests.Utilities\UiB.Tests.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

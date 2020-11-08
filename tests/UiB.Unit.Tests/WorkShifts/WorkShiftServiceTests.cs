@@ -1,14 +1,20 @@
 ﻿using FluentAssertions;
-using System;
 using Moq;
+using System;
+using UiB.Domain.Shared;
 using UiB.Domain.WorkShifts;
-using UiB.Tests.Utilities.WorkShifts;
 using Xunit;
 
 namespace UiB.Unit.Tests.WorkShifts
 {
     public class WorkShiftServiceTests
     {
+        [Fact]
+        public void GivenNoRepository_WhenInitialize_ThenThrowNoDatabaseException()
+        {
+            Assert.Throws<NoDatabaseException>(() => new WorkShiftService(null));
+        }
+
         [Fact]
         public void GivenValidWorkShift_WhenCreate_ThenReturnWorkShift()
         {
@@ -25,16 +31,6 @@ namespace UiB.Unit.Tests.WorkShifts
             var result = workShiftService.Create(workShift);
 
             result.Should().Be(expectedResult);
-        }
-
-        [Theory]
-        [ClassData(typeof(InvalidWorkShiftData))]
-        public void GivenInValidWorkShift_WhenCreate_ThenThrowArgumentException(DateTime start, DateTime end)
-        {
-            var workShiftRepository = new Mock<IWorkShiftRepository>();
-            var workShiftService = new WorkShiftService(workShiftRepository.Object);
-
-            Assert.Throws<ArgumentException>(() => workShiftService.Create(new WorkShift(start, end)));
         }
     }
 }
