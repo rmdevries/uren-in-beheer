@@ -1,10 +1,12 @@
-﻿using UiB.Domain.Shared;
+﻿using System;
+using UiB.Domain.Shared;
 
 namespace UiB.Domain.WorkShifts
 {
     public interface IWorkShiftService
     {
-        public int Create(WorkShift workShift);
+        public WorkShift Create(WorkShift workShift);
+        public WorkShift Edit(WorkShift workShift, DateTime start, DateTime end);
     }
 
     public class WorkShiftService : IWorkShiftService
@@ -16,9 +18,15 @@ namespace UiB.Domain.WorkShifts
             _repository = repository ?? throw new NoDatabaseException();
         }
 
-        public int Create(WorkShift workShift)
+        public WorkShift Create(WorkShift workShift)
         {
             return _repository.Insert(workShift);
+        }
+
+        public WorkShift Edit(WorkShift workShift, DateTime start, DateTime end)
+        {
+            workShift.Update(start, end);
+            return _repository.Update(workShift);
         }
     }
 }

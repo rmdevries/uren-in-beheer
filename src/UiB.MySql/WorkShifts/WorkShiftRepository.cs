@@ -14,7 +14,7 @@ namespace UiB.MySql.WorkShifts
             _conn = connection;
         }
 
-        public int Insert(WorkShift workShift)
+        public WorkShift Insert(WorkShift workShift)
         {
             try
             {
@@ -22,10 +22,10 @@ namespace UiB.MySql.WorkShifts
                 {
                     _conn.Open();
                     string sql =
-                        "INSERT INTO WorkShifts (Start, End) VALUES (@Start, @End);SELECT LAST_INSERT_ID() FROM WorkShifts;";
+                        "INSERT INTO WorkShifts (Start, End) VALUES (@Start, @End);SELECT * FROM WorkShifts WHERE Id=LAST_INSERT_ID();";
                     object param = new {Start = workShift.Start, End = workShift.End};
-                    var id = _conn.ExecuteScalar<int>(sql, param);
-                    return id;
+                    var insertedWorkShift = _conn.ExecuteScalar<WorkShift>(sql, param);
+                    return insertedWorkShift;
                 }
             }
             catch (Exception ex)
@@ -33,6 +33,11 @@ namespace UiB.MySql.WorkShifts
                 Console.WriteLine(ex);
                 throw;
             }
+        }
+
+        public WorkShift Update(WorkShift workShift)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -16,21 +16,41 @@ namespace UiB.Unit.Tests.WorkShifts
         }
 
         [Fact]
-        public void GivenValidWorkShift_WhenCreate_ThenReturnWorkShift()
+        public void GivenValidWorkShift_WhenCreate_ThenReturnInsertedWorkShift()
         {
-            var expectedResult = 1;
             var start = DateTime.Now;
             var end = start.AddHours(1);
             var workShift = new WorkShift(start, end);
 
             var workShiftRepository = new Mock<IWorkShiftRepository>();
-            workShiftRepository.Setup(repo => repo.Insert(workShift)).Returns(expectedResult);
+            workShiftRepository.Setup(repo => repo.Insert(workShift)).Returns(workShift);
 
-            var workShiftService = new WorkShiftService(workShiftRepository.Object);
+            IWorkShiftService workShiftService = new WorkShiftService(workShiftRepository.Object);
 
             var result = workShiftService.Create(workShift);
 
-            result.Should().Be(expectedResult);
+            result.Should().Be(workShift);
+        }
+
+        [Fact]
+        public void GivenValidWorkShift_WhenEdit_ThenReturnEditedWorkShift()
+        {
+            var start = DateTime.Now;
+            var end = start.AddHours(1);
+            var workShift = new WorkShift(start, end);
+
+            var editedStart = DateTime.Now.AddDays(1);
+            var editedEnd = editedStart.AddHours(1);
+            var editedWorkShift = new WorkShift(start, end);
+
+            var workShiftRepository = new Mock<IWorkShiftRepository>();
+            workShiftRepository.Setup(repo => repo.Update(workShift)).Returns(editedWorkShift);
+
+            IWorkShiftService workShiftService = new WorkShiftService(workShiftRepository.Object);
+
+            var result = workShiftService.Edit(workShift, editedStart, editedEnd);
+
+            result.Should().Be(editedWorkShift);
         }
     }
 }
