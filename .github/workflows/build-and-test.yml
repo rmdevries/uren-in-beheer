@@ -10,11 +10,15 @@ jobs:
         with:
           dotnet-version: '3.1'
 
-      - name: Build with dotnet
-        run: dotnet build src/
+      - name: Clean and build with dotnet
+        working-directory: src/
+        run: |
+          dotnet clean
+          dotnet build
 
       - name: Test Units with dotnet
-        run: dotnet test tests/UiB.Unit.Tests
+        working-directory: tests/UiB.Unit.Tests
+        run: dotnet test
   
   build-frontend:
     runs-on: ubuntu-latest
