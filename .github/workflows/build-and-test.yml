@@ -1,17 +1,32 @@
 name: build-and-test
 on: [pull_request]
 jobs:
-  build-and-test:
+  build-and-test-backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "3.1"
+          dotnet-version: '3.1'
 
       - name: Build with dotnet
         run: dotnet build src/
 
       - name: Test Units with dotnet
         run: dotnet test tests/UiB.Unit.Tests
+  
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.15'
+
+      - name: Clean install dependencies and build
+        working-directory: src/UiB.UI
+        run: |
+          npm ci
+          npm run build
