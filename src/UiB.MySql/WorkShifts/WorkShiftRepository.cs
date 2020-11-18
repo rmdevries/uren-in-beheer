@@ -22,9 +22,9 @@ namespace UiB.MySql.WorkShifts
                 {
                     _conn.Open();
                     string sql =
-                        "INSERT INTO WorkShifts (Start, End) VALUES (@Start, @End);SELECT * FROM WorkShifts WHERE Id=LAST_INSERT_ID();";
+                        "INSERT INTO WorkShifts (Start, End) VALUES (@Start, @End);SELECT * FROM WorkShifts WHERE Id=(SELECT LAST_INSERT_ID());";
                     object param = new {Start = workShift.Start, End = workShift.End};
-                    var insertedWorkShift = _conn.ExecuteScalar<WorkShift>(sql, param);
+                    var insertedWorkShift = _conn.QuerySingle<WorkShift>(sql, param);
                     return insertedWorkShift;
                 }
             }

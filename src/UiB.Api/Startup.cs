@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,6 +34,8 @@ namespace UiB.API
                 Description = "A small Time Registration System API"
             }));
 
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "../UiB.UI/build"; });
+
             services.AddSimpleInjector(_container, options => options.AddAspNetCore().AddControllerActivation());
         }
 
@@ -53,7 +55,7 @@ namespace UiB.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "UiB API V1");
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "swagger";
                 c.InjectStylesheet("/swagger-ui/custom.css");
             });
 
@@ -61,10 +63,16 @@ namespace UiB.API
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.UseSpa(spa =>
             {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                spa.Options.SourcePath = "../UiB.UI";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
             });
         }
     }
