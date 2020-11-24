@@ -36,3 +36,87 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.08), 0px 4px 4px rgba(0, 0, 0, 0.08);
+  display: inline-flex;
+  flex-direction: column;
+  padding: 32px 32px 16px 32px;
+}
+
+.card h1 {
+  font-size: 18px;
+  margin: 0 0 48px 0;
+}
+
+.card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card form .row {
+  border: 0;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.card form .row .column {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.card form .row .column:first-child {
+  margin-right: 16px;
+}
+
+.card form .row .column:last-child {
+  margin-left: 16px;
+}
+
+.card form label {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.card form input {
+  border: 0;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0;
+}
+
+.card form input[type="date"],
+.card form input[type="time"] {
+  margin-bottom: 32px;
+}
+
+.card form input[type="submit"] {
+  border-radius: 16px;
+  height: 32px;
+  padding: 0 16px;
+}
+
+input::-webkit-calendar-picker-indicator {
+  height: 24px;
+  margin-left: 8px;
+  width: 24px;
+}
+
+.card form .submitButton {
+  background: #00aaff;
+  color: #ffffff;
+  margin: 16px 0 4px 0;
+}
+
+.card form .cancelButton {
+  background: #ffffff;
+  color: #00aaff;
+  margin-top: 4px;
+}
