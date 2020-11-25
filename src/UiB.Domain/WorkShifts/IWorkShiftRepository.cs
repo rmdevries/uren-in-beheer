@@ -6,6 +6,7 @@ namespace UiB.Domain.WorkShifts
     {
         WorkShift Insert(WorkShift workShift);
         WorkShift Update(WorkShift workShift);
-        IEnumerable<WorkShift> Read();
+        WorkShift Read(int id);
+        IEnumerable<WorkShift> Read(int page, int pageSize);
     }
 }

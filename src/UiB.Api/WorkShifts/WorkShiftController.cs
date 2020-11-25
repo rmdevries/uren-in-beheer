@@ -22,9 +22,17 @@ namespace UiB.Api.WorkShifts
         }
 
         [HttpGet]
-        public IActionResult Read()
+        [Route("{id:int}")]
+        public IActionResult Read(int id)
         {
-            var workShifts = _service.Read();
+            var workShifts = _service.Read(id);
+            return Ok(workShifts);
+        }
+
+        [HttpGet]
+        public IActionResult Read(int page, int pageSize)
+        {
+            var workShifts = _service.Read(page, pageSize);
             return Ok(workShifts);
         }
     }

@@ -23,10 +23,10 @@ namespace UiB.MySql.WorkShifts
                 using (_conn)
                 {
                     _conn.Open();
-                    string sql =
-                        "INSERT INTO WorkShifts (Start, End) VALUES (@Start, @End);SELECT * FROM WorkShifts WHERE Id=(SELECT LAST_INSERT_ID());";
-                    object param = new {Start = workShift.Start, End = workShift.End};
-                    var insertedWorkShift = _conn.QuerySingle<WorkShift>(sql, param);
+                    string sql = "INSERT INTO WorkShifts (Start, End) VALUES (@Start, @End);SELECT LAST_INSERT_ID();";
+                    var param = new {Start = workShift.Start, End = workShift.End};
+                    var insertedId = _conn.ExecuteScalar<int>(sql, param);
+                    var insertedWorkShift = Read(insertedId);
                     return insertedWorkShift;
                 }
             }
@@ -42,12 +42,31 @@ namespace UiB.MySql.WorkShifts
             throw new NotImplementedException();
         }
 
-        public IEnumerable<WorkShift> Read()
+        public WorkShift Read(int id)
         {
             try
             {
-                string sql = "SELECT * FROM WorkShifts ORDER BY Id DESC";
-                var workShifts = _conn.Query<WorkShiftEntity>(sql);
+                string sql = "SELECT * FROM WorkShifts WHERE Id = @Id";
+                var param = new {Id = id};
+
+                var workShift = _conn.QueryFirst<WorkShiftEntity>(sql, param);
+                return workShift;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public IEnumerable<WorkShift> Read(int page, int pageSize)
+        {
+            try
+            {
+                string sql = "SELECT * FROM WorkShifts ORDER BY Id DESC LIMIT @Offset, @Size";
+                var param = new {Offset = page * pageSize, Size = pageSize};
+
+                var workShifts = _conn.Query<WorkShiftEntity>(sql, param);
                 return workShifts.Select(shift => (WorkShift) shift);
             }
             catch (Exception ex)

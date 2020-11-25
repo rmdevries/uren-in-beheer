@@ -19,7 +19,7 @@ namespace UiB.Unit.Tests.WorkShifts
             _repository = new Mock<IWorkShiftRepository>();
             _service = new WorkShiftService(_repository.Object);
 
-            _validWorkShift = new WorkShift(DateTime.Now, DateTime.Now.AddDays(1));
+            _validWorkShift = new WorkShift(5, DateTime.Now, DateTime.Now.AddDays(1));
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace UiB.Unit.Tests.WorkShifts
         }
 
         [Fact]
-        public void Given_WhenRead_ThenReturnAllWorkShifts()
+        public void GivenPageAndPageSize_WhenRead_ThenReturnWorkShifts()
         {
             var workShifts = new[]
             {
@@ -48,11 +48,24 @@ namespace UiB.Unit.Tests.WorkShifts
                 _validWorkShift
             };
 
-            _repository.Setup(repo => repo.Read()).Returns(workShifts);
+            int page = 2;
+            int pageSize = 10;
 
-            var result = _service.Read();
+            _repository.Setup(repo => repo.Read(page, pageSize)).Returns(workShifts);
+
+            var result = _service.Read(page, pageSize);
 
             result.Should().BeSameAs(workShifts);
+        }
+
+        [Fact]
+        public void GivenWorkShiftId_WhenRead_ThenReturnSingleWorkShift()
+        {
+            _repository.Setup(repo => repo.Read(_validWorkShift.Id)).Returns(_validWorkShift);
+
+            var result = _service.Read(_validWorkShift.Id);
+
+            result.Should().BeSameAs(_validWorkShift);
         }
 
         [Fact]
