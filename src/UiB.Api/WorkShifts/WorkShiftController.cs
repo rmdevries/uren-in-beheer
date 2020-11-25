@@ -20,5 +20,12 @@ namespace UiB.Api.WorkShifts
             var workShift = _service.Create(workShiftDto);
             return Ok(workShift);
         }
+
+        [HttpGet]
+        public IActionResult Read()
+        {
+            var workShifts = _service.Read();
+            return Ok(workShifts);
+        }
     }
 }

@@ -8,6 +8,17 @@ namespace UiB.Domain.WorkShifts
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
 
+        public WorkShift(int id, DateTime start, DateTime end)
+        {
+            if (end <= start)
+                throw new InvalidWorkShiftException("Unable to initialize WorkShift due to invalid time period.", start,
+                    end);
+
+            Id = id;
+            Start = start;
+            End = end;
+        }
+
         public WorkShift(DateTime start, DateTime end)
         {
             if (end <= start)

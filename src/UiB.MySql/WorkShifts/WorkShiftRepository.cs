@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using UiB.Domain.WorkShifts;
 
@@ -38,6 +40,21 @@ namespace UiB.MySql.WorkShifts
         public WorkShift Update(WorkShift workShift)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<WorkShift> Read()
+        {
+            try
+            {
+                string sql = "SELECT * FROM WorkShifts ORDER BY Id DESC";
+                var workShifts = _conn.Query<WorkShiftEntity>(sql);
+                return workShifts.Select(shift => (WorkShift) shift);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
     }
 }

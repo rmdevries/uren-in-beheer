@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UiB.Domain.Shared;
 
 namespace UiB.Domain.WorkShifts
@@ -7,6 +9,7 @@ namespace UiB.Domain.WorkShifts
     {
         public WorkShift Create(WorkShift workShift);
         public WorkShift Edit(WorkShift workShift, DateTime start, DateTime end);
+        public IEnumerable<WorkShift> Read();
     }
 
     public class WorkShiftService : IWorkShiftService
@@ -27,6 +30,11 @@ namespace UiB.Domain.WorkShifts
         {
             workShift.Update(start, end);
             return _repository.Update(workShift);
+        }
+
+        public IEnumerable<WorkShift> Read()
+        {
+            return _repository.Read();
         }
     }
 }
