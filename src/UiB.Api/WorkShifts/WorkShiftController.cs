@@ -30,7 +30,7 @@ namespace UiB.Api.WorkShifts
         }
 
         [HttpGet]
-        public IActionResult Read(int page, int pageSize)
+        public IActionResult Read(int page = 0, int pageSize = 50)
         {
             var workShifts = _service.Read(page, pageSize);
             return Ok(workShifts);
