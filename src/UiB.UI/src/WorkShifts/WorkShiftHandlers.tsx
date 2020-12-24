@@ -17,6 +17,25 @@ function useDate() {
     setInputEnd(event.target.value);
   }
 
+  function handleWorkShiftSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    fetch("/api/WorkShift", {
+      method: "POST",
+      cache: "no-cache",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        start: convertToDateTime(inputDate, inputStart),
+        end: convertToDateTime(inputDate, inputEnd),
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
+
   function convertToDateTime(date: Date, time: string): Date {
     const [hours, minutes] = time.split(":").map((n) => parseInt(n, 10));
     return new Date(date.setHours(hours, minutes, 0, 0));
@@ -29,7 +48,7 @@ function useDate() {
     handleDateChange,
     handleStartChange,
     handleEndChange,
-    convertToDateTime,
+    handleWorkShiftSubmit,
   };
 }
 

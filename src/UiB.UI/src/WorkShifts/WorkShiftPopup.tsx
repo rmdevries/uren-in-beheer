@@ -2,37 +2,20 @@ import React from "react";
 import useDate from "./WorkShiftHandlers";
 
 function WorkShiftPopup() {
-  const {inputDate,
+  const {
+    inputDate,
     inputStart,
     inputEnd,
     handleDateChange,
     handleStartChange,
     handleEndChange,
-    convertToDateTime} = useDate();
+    handleWorkShiftSubmit,
+  } = useDate();
 
   return (
     <div className="card">
       <h1>New workshift</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-
-          fetch("/api/WorkShift", {
-            method: "POST",
-            cache: "no-cache",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              start: convertToDateTime(inputDate, inputStart),
-              end: convertToDateTime(inputDate, inputEnd),
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => console.log(data));
-        }}
-      >
+      <form onSubmit={handleWorkShiftSubmit}>
         <label>Date</label>
         <input
           type="date"
