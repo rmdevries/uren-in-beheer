@@ -1,43 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.card {
+/*.card {
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.08), 0px 4px 4px rgba(0, 0, 0, 0.08);
@@ -86,18 +47,18 @@
 
 .card form input {
   border: 0;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-size: 12px;
   font-weight: 500;
   padding: 0;
 }
 
-.card form input[type="date"],
-.card form input[type="time"] {
+.card form input[type='date'],
+.card form input[type='time'] {
   margin-bottom: 32px;
 }
 
-.card form input[type="submit"] {
+.card form input[type='submit'] {
   border-radius: 16px;
   height: 32px;
   padding: 0 16px;
@@ -119,4 +80,4 @@ input::-webkit-calendar-picker-indicator {
   background: #ffffff;
   color: #00aaff;
   margin-top: 4px;
-}
+}*/
