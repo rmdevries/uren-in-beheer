@@ -32,5 +32,5 @@ jobs:
       - name: Clean install dependencies and build
         working-directory: src/UiB.UI
         run: |
-          npm ci
-          npm run build
+          yarn install
+          yarn build
