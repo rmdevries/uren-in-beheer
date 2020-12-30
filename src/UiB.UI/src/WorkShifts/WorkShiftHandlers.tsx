@@ -33,7 +33,8 @@ function WorkshiftHandler() {
       }),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
+      .then(() => window.location.reload());
   }
 
   function convertToDateTime(date: Date, time: string): Date {

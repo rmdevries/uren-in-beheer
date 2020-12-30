@@ -4,22 +4,29 @@ module.exports = {
   theme: {
     colors: {
       blue: {
+        light: '#3367f7',
         DEFAULT: '#0041f5',
-        medium: '#003c70',
-        dark: '#002e56',
-        darkest: '#002647'
+        dark: '#002dab',
       },
       grey: {
-        DEFAULT: '#dddddd'
+        white: '#ffffff',
+        light: '#f3f3f3',
+        DEFAULT: '#dddddd',
+        dark: '#999999',
+        black: '#111111'
       },
       orange: {
         DEFAULT: '#fe7f14'
       },
-      white: {
-        DEFAULT: '#ffffff'
-      }
     },
     extend: {},
+    screens: {
+      'sm': {'max': '767px'},
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     spacing: {
       'sm': '.4rem',
       'md': '.8rem',
