@@ -13,18 +13,22 @@ function WorkShiftPopup() {
   } = WorkshiftHandler();
 
   return (
-    <div className='border border-grey rounded-md'>
-      <h1>New workshift</h1>
-      <form onSubmit={handleWorkShiftSubmit}>
-        <label>Date</label>
-        <input
-          type='date'
-          onChange={handleDateChange}
-          value={inputDate.toISOString().split('T')[0]}
-        />
-
-        <fieldset className='row'>
-          <fieldset className='column'>
+    <div className='sm:p-md lg:max-w-screen-lg m-auto py-md'>
+      <div className='bg-grey-white rounded-xl shadow-md p-md'>
+        <h1 className='font-bold text-2xl my-md'>New workshift</h1>
+        <form
+          className='flex flex-wrap flex-col'
+          onSubmit={handleWorkShiftSubmit}
+        >
+          <fieldset className='inline-flex flex-col'>
+            <label>Date</label>
+            <input
+              type='date'
+              onChange={handleDateChange}
+              value={inputDate.toISOString().split('T')[0]}
+            />
+          </fieldset>
+          <fieldset className='inline-flex flex-col my-md'>
             <label>From</label>
             <input
               type='time'
@@ -32,15 +36,17 @@ function WorkShiftPopup() {
               value={inputStart}
             />
           </fieldset>
-          <fieldset className='column'>
+          <fieldset className='inline-flex flex-col'>
             <label>From</label>
             <input type='time' onChange={handleEndChange} value={inputEnd} />
           </fieldset>
-        </fieldset>
-
-        <input className='submitButton' type='submit' value='Register' />
-        <input className='cancelButton' type='submit' value='Cancel' />
-      </form>
+          <input
+            className='bg-orange rounded-full text-grey-white font-bold p-md mt-md'
+            type='submit'
+            value='Register'
+          />
+        </form>
+      </div>
     </div>
   );
 }
