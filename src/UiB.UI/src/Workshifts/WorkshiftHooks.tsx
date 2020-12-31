@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { IWorkShift } from './IWorkshift';
+import { IWorkshift } from './IWorkshift';
 
 function useWorkshifts() {
-  const [workshifts, setWorkshifts] = useState<IWorkShift[]>();
+  const [workshifts, setWorkshifts] = useState<IWorkshift[]>();
 
   useEffect(() => {
-    function handleWorkshiftsFetch(data: IWorkShift[]) {
+    function handleWorkshiftsFetch(data: IWorkshift[]) {
       setWorkshifts(data);
     }
 
-    fetch('/api/WorkShift', {
+    fetch('/api/Workshift', {
       method: 'GET',
       cache: 'no-cache',
       headers: {
@@ -18,7 +18,7 @@ function useWorkshifts() {
       },
     })
       .then((response) => response.json())
-      .then((data: IWorkShift[]) => {
+      .then((data: IWorkshift[]) => {
         handleWorkshiftsFetch(data);
       })
       .then(() => console.log('Workshifts fetched'))

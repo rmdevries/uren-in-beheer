@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
-using UiB.Domain.WorkShifts;
+using UiB.Domain.Workshifts;
 
-namespace UiB.MySql.WorkShifts
+namespace UiB.MySql.Workshifts
 {
-    public class WorkShiftRepository : IWorkShiftRepository
+    public class WorkshiftRepository : IWorkshiftRepository
     {
         private readonly IDbConnection _conn;
 
-        public WorkShiftRepository(IDbConnection connection)
+        public WorkshiftRepository(IDbConnection connection)
         {
             _conn = connection;
         }
 
-        public WorkShift Insert(WorkShift workShift)
+        public Workshift Insert(Workshift workshift)
         {
             try
             {
                 using (_conn)
                 {
                     _conn.Open();
-                    string sql = "INSERT INTO WorkShifts (Start, End) VALUES (@Start, @End);SELECT LAST_INSERT_ID();";
-                    var param = new {Start = workShift.Start, End = workShift.End};
+                    string sql = "INSERT INTO Workshifts (Start, End) VALUES (@Start, @End);SELECT LAST_INSERT_ID();";
+                    var param = new {Start = workshift.Start, End = workshift.End};
                     var insertedId = _conn.ExecuteScalar<int>(sql, param);
-                    var insertedWorkShift = Read(insertedId);
-                    return insertedWorkShift;
+                    var insertedWorkshift = Read(insertedId);
+                    return insertedWorkshift;
                 }
             }
             catch (Exception ex)
@@ -37,20 +37,20 @@ namespace UiB.MySql.WorkShifts
             }
         }
 
-        public WorkShift Update(WorkShift workShift)
+        public Workshift Update(Workshift workshift)
         {
             throw new NotImplementedException();
         }
 
-        public WorkShift Read(int id)
+        public Workshift Read(int id)
         {
             try
             {
-                string sql = "SELECT * FROM WorkShifts WHERE Id = @Id";
+                string sql = "SELECT * FROM Workshifts WHERE Id = @Id";
                 var param = new {Id = id};
 
-                var workShift = _conn.QueryFirst<WorkShiftEntity>(sql, param);
-                return workShift;
+                var workshift = _conn.QueryFirst<WorkshiftEntity>(sql, param);
+                return workshift;
             }
             catch (Exception ex)
             {
@@ -59,15 +59,15 @@ namespace UiB.MySql.WorkShifts
             }
         }
 
-        public IEnumerable<WorkShift> Read(int page, int pageSize)
+        public IEnumerable<Workshift> Read(int page, int pageSize)
         {
             try
             {
-                string sql = "SELECT * FROM WorkShifts ORDER BY Id DESC LIMIT @Offset, @Size";
+                string sql = "SELECT * FROM Workshifts ORDER BY Id DESC LIMIT @Offset, @Size";
                 var param = new {Offset = page * pageSize, Size = pageSize};
 
-                var workShifts = _conn.Query<WorkShiftEntity>(sql, param);
-                return workShifts.Select(shift => (WorkShift) shift);
+                var workshifts = _conn.Query<WorkshiftEntity>(sql, param);
+                return workshifts.Select(shift => (Workshift) shift);
             }
             catch (Exception ex)
             {

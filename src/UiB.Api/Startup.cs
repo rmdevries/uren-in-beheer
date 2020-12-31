@@ -7,8 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MySql.Data.MySqlClient;
 using SimpleInjector;
-using UiB.Domain.WorkShifts;
-using UiB.MySql.WorkShifts;
+using UiB.Domain.Workshifts;
+using UiB.MySql.Workshifts;
 
 namespace UiB.API
 {
@@ -45,9 +45,9 @@ namespace UiB.API
             app.UseSimpleInjector(_container);
             _container.RegisterInstance(_settings);
 
-            _container.Register<IWorkShiftRepository>(() =>
-                new WorkShiftRepository(new MySqlConnection(_settings.ConnectionString)));
-            _container.Register<IWorkShiftService, WorkShiftService>();
+            _container.Register<IWorkshiftRepository>(() =>
+                new WorkshiftRepository(new MySqlConnection(_settings.ConnectionString)));
+            _container.Register<IWorkshiftService, WorkshiftService>();
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 

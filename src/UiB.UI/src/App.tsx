@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import Header from './Shared/Header';
-import WorkShiftPopup from './WorkShifts/WorkShiftPopup';
-import WorkshiftOverview from './WorkShifts/WorkshiftOverview';
+import WorkshiftPopup from './Workshifts/WorkshiftPopup';
+import WorkshiftOverview from './Workshifts/WorkshiftOverview';
 
 function App() {
   return (
     <div>
       <Header />
-      <WorkShiftPopup />
+      <WorkshiftPopup />
       <WorkshiftOverview />
     </div>
   );

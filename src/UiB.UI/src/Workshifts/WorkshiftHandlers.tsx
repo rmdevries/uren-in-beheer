@@ -17,10 +17,10 @@ function WorkshiftHandler() {
     setInputEnd(event.target.value);
   }
 
-  function handleWorkShiftSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleWorkshiftSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    fetch('/api/WorkShift', {
+    fetch('/api/Workshift', {
       method: 'POST',
       cache: 'no-cache',
       headers: {
@@ -49,7 +49,7 @@ function WorkshiftHandler() {
     handleDateChange,
     handleStartChange,
     handleEndChange,
-    handleWorkShiftSubmit,
+    handleWorkshiftSubmit,
   };
 }
 

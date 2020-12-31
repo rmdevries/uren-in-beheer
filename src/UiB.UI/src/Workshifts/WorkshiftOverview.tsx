@@ -1,5 +1,5 @@
 import React from 'react';
-import { IWorkShift } from './IWorkshift';
+import { IWorkshift } from './IWorkshift';
 import useWorkshifts from './WorkshiftHooks';
 
 function WorkshiftOverview() {
@@ -16,7 +16,7 @@ function WorkshiftOverview() {
           </tr>
         </thead>
         <tbody>
-          {workshifts?.map((workShift: IWorkShift, index: number) => (
+          {workshifts?.map((workShift: IWorkshift, index: number) => (
             <tr
               key={workShift.id}
               className={`${

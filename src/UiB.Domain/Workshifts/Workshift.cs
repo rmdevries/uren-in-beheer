@@ -1,17 +1,17 @@
 ﻿using System;
 
-namespace UiB.Domain.WorkShifts
+namespace UiB.Domain.Workshifts
 {
-    public class WorkShift
+    public class Workshift
     {
         public int Id { get; }
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
 
-        public WorkShift(int id, DateTime start, DateTime end)
+        public Workshift(int id, DateTime start, DateTime end)
         {
             if (end <= start)
-                throw new InvalidWorkShiftException("Unable to initialize WorkShift due to invalid time period.", start,
+                throw new InvalidWorkshiftException("Unable to initialize Workshift due to invalid time period.", start,
                     end);
 
             Id = id;
@@ -19,10 +19,10 @@ namespace UiB.Domain.WorkShifts
             End = end;
         }
 
-        public WorkShift(DateTime start, DateTime end)
+        public Workshift(DateTime start, DateTime end)
         {
             if (end <= start)
-                throw new InvalidWorkShiftException("Unable to initialize WorkShift due to invalid time period.", start,
+                throw new InvalidWorkshiftException("Unable to initialize Workshift due to invalid time period.", start,
                     end);
 
             Start = start;
@@ -32,7 +32,7 @@ namespace UiB.Domain.WorkShifts
         public void Update(DateTime start, DateTime end)
         {
             if (end <= start)
-                throw new InvalidWorkShiftException("Unable to initialize WorkShift due to invalid time period.", start,
+                throw new InvalidWorkshiftException("Unable to initialize Workshift due to invalid time period.", start,
                     end);
 
             Start = start;

@@ -1,7 +1,7 @@
 import React from 'react';
-import WorkshiftHandler from './WorkShiftHandlers';
+import WorkshiftHandler from './WorkshiftHandlers';
 
-function WorkShiftPopup() {
+function WorkshiftPopup() {
   const {
     inputDate,
     inputStart,
@@ -9,7 +9,7 @@ function WorkShiftPopup() {
     handleDateChange,
     handleStartChange,
     handleEndChange,
-    handleWorkShiftSubmit,
+    handleWorkshiftSubmit,
   } = WorkshiftHandler();
 
   return (
@@ -18,7 +18,7 @@ function WorkShiftPopup() {
         <h1 className='font-bold text-2xl my-md'>New workshift</h1>
         <form
           className='flex flex-wrap flex-col'
-          onSubmit={handleWorkShiftSubmit}
+          onSubmit={handleWorkshiftSubmit}
         >
           <fieldset className='inline-flex flex-col'>
             <label>Date</label>
@@ -51,4 +51,4 @@ function WorkShiftPopup() {
   );
 }
 
-export default WorkShiftPopup;
+export default WorkshiftPopup;
